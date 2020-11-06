@@ -4,15 +4,17 @@
         <code>Pages: {{getBook.pages}} </code>
         <code>Rating: {{getBook.rating}} ({{getBook.rating_count}})</code>
         <code>Genres: {{#each genres}}{{this}}, {{/each}} </code>
+       
     </div>
 
     <div class="mt-5 ml-5 description">
         <h1>{{getBook.title}}</h1>
+         <code class="font-italic">Copyright (c) 2020 The New York Times Company. ALl Rights Reserved.</code>
         <h4>by {{#each authors}}{{this}}, {{/each}}</h4>
         <p>{{getBook.description}}</p>
         <a href="/reviews/{{getBook.title}}">Find Review</a>
     </div>
-     <form action="#" method="get">
-            <button class="btn btn-outline-success" formaction="/">Home</button>
-        </form>
+    <form action="#" method="get">
+        <button class="btn btn-outline-success" formaction="/">Home</button>
+    </form>
 </div>

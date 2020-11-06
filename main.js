@@ -68,8 +68,28 @@ app.get("/:alphaNum/:bookId", async (req, res) => {
 		const authors = getBook.authors.split("|");
 		console.log(getBook);
 		res.status(200);
-		res.type("text/html");
-		res.render("detail", { getBook, genres, authors });
+		res.format({
+            'text/html': () => {
+                res.render("detail", { getBook, genres, authors });
+            },
+            'application/json': () => {
+                res.json({
+                    bookId: getBook.book_id,
+                    title: getBook.title,
+                    authors,
+                    summary: getBook.description,
+                    pages:getBook.pages,
+                    rating: getBook.rating,
+                    ratingCount: getBook.rating_count,
+                    genre: genres
+                })
+            },
+            'default': () => {
+                res.status(406)
+                res.send('Not Acceptable')
+            }
+        })
+		
 	} catch (e) {
 		res.status(500);
 		res.type("text/html");
