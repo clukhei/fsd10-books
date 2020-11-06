@@ -29,9 +29,15 @@ app.get("/:alphaNum", async(req,res)=> {
     const limit = 10
     const conn = await pool.getConnection()
     try{
+        const countResult = await conn.query(SQL_COUNT_GET_BOOK_LIST, [`${letter}%`])
+        const count = countResult[0][0].count
+        const totalPages = Math.ceil(count / limit)
+  
+        console.log(count)
+        console.log(totalPages)
         const result = await conn.query(SQL_GET_BOOK_LIST,[`${letter}%`,limit, offset])
         const records = result[0]
-        console.log(records)
+        //console.log(records)
         res.status(200)
         res.type('text/html')
         res.render('list', {
@@ -39,7 +45,9 @@ app.get("/:alphaNum", async(req,res)=> {
             hasRecords: records.length > 0,
             records,
             prevOffset: Math.max(0, offset - limit) ,
-            nextOffset: offset + limit
+            nextOffset: offset + limit,
+            nextInactive: (((offset + 10)/ 10) === totalPages),
+            prevInactive: (offset <= 0)
         })
 
        

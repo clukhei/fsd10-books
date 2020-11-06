@@ -1,26 +1,34 @@
 <h1>Letter {{letter}}</h1>
 {{#if hasRecords}}
-    <table class="table">
-        {{#each records}}
-        <tr>
-            <td><a href="/list/{{this.book_id}}">{{this.title}}</a></td>
-        </tr>
-        {{/each}}
-    </table>
-    <div class="d-flex justify-content-between">
-        <form action="/{{letter}}" method="GET">
+<table class="table">
+    {{#each records}}
+    <tr>
+        <td><a href="/list/{{this.book_id}}">{{this.title}}</a></td>
+    </tr>
+    {{/each}}
+</table>
+<div class="d-flex justify-content-between">
+    {{#if prevInactive}}
+    <form action=""><input type="hidden" name="dummy"></form>
+    {{else}}
+    <form action="/{{letter}}" method="GET">
         <input type="hidden" name="offset" value="{{prevOffset}}">
         <button class="btn btn-primary" type="submit">Previous</button>
     </form>
+    {{/if}}
+    {{#if nextInactive}}
+    {{else}}
     <form action="/{{letter}}" method="GET">
         <input type="hidden" name="offset" value="{{nextOffset}}">
         <button type="submit" class="btn btn-primary">Next</button>
     </form>
+    {{/if}}
 
-    </div>
-    
 
-    {{else}}
-    <h3>No books starting with {{Letter}} found</h3>
+</div>
 
- {{/if}}
+
+{{else}}
+<h3>No books starting with {{Letter}} found</h3>
+
+{{/if}}
