@@ -1,9 +1,75 @@
-body{
-    margin: 0 auto;
-    width: 80%;
-    padding-top: 100px;
+body {
+	margin: 0 auto;
+	width: 90%;
+	padding-top: 50px;
+	color: black;
+	background-image: repeating-linear-gradient(
+			15deg,
+			hsl(142, 0%, 8%) 0px,
+			hsl(142, 0%, 8%) 12px,
+			transparent 13px
+		),
+		repeating-linear-gradient(
+			155deg,
+			hsl(142, 0%, 8%) 0px,
+			hsl(142, 0%, 8%) 12px,
+			transparent 13px
+		),
+		linear-gradient(90deg, hsla(96, 0%, 71%, 1), hsla(111, 0%, 71%, 1));
 }
 
-.description{
-    max-width: 60%;
+nav{
+	margin: 0 auto;
+}
+.page-link{
+    color: #c71585;
+}
+.page-link:hover {
+    font-weight: bold;
+    color: #c71585;
+    background-color: pink;
+}
+
+.nextprev-btn {
+    background-color :#c71585;
+    color: white;
+}
+.nextprev-btn:hover {
+    font-weight: bold;
+    color: white;
+}
+
+.title {
+	margin-left: 80px;
+}
+.description {
+	max-width: 60%;
+}
+
+.body-container {
+	background-color: white;
+	opacity: 80%;
+	border-radius: 5px;
+	box-shadow: 10px 5px 5px #c71585;
+	padding: 2em;
+}
+
+.home-btn {
+	background-color: #15c656;
+	color: white;
+	font-weight: bold;
+}
+.table tbody tr:hover td,
+.table tbody tr:hover th {
+	background-color: #fbd9ef;
+	font-weight: bold;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: #c71585;
 }

@@ -12,9 +12,12 @@
          <code class="font-italic">Copyright (c) 2020 The New York Times Company. ALl Rights Reserved.</code>
         <h4>by {{#each authors}}{{this}}, {{/each}}</h4>
         <p>{{getBook.description}}</p>
-        <a href="/reviews/{{getBook.title}}">Find Review</a>
+        <form action="#" method="get">
+        <button class="btn nextprev-btn" formaction="/reviews/{{getBook.title}}">Find Review</button>
+    </form>    
+        
     </div>
     <form action="#" method="get">
-        <button class="btn btn-outline-success" formaction="/">Home</button>
+        <button class="btn home-btn" formaction="/">Home</button>
     </form>
 </div>

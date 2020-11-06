@@ -1,12 +1,12 @@
 <div class="d-flex justify-content-between">
-    <h1> Character {{letter}}</h1>
+    <h1> Search results for: {{letter}}</h1>
     <form action="#" method="get">
-        <button class="btn btn-outline-success" formaction="/">Home</button>
+        <button class="btn home-btn" formaction="/">Home</button>
     </form>
 </div>
 
 {{#if hasRecords}}
-<table class="table">
+<table class="table table-hover">
     {{#each records}}
     <tr>
         <td><a href="/{{../letter}}/{{this.book_id}}">{{this.title}}</a></td>
@@ -15,19 +15,19 @@
 </table>
 <div class="d-flex justify-content-between">
     {{#if prevInactive}}
-    <button class="btn btn-primary" type="submit" disabled >Previous</button>
+    <button class="btn nextprev-btn" type="submit" disabled >Previous</button>
     {{else}}
     <form action="/{{letter}}" method="GET">
         <input type="hidden" name="offset" value="{{prevOffset}}">
-        <button class="btn btn-primary" type="submit">Previous</button>
+        <button class="btn nextprev-btn" type="submit">Previous</button>
     </form>
     {{/if}}
     {{#if nextInactive}}
-    <button class="btn btn-primary" type="submit" disabled >Next</button>
+    <button class="btn nextprev-btn" type="submit" disabled >Next</button>
     {{else}}
     <form action="/{{letter}}" method="GET">
         <input type="hidden" name="offset" value="{{nextOffset}}">
-        <button type="submit" class="btn btn-primary">Next</button>
+        <button type="submit" class="btn nextprev-btn">Next</button>
     </form>
     {{/if}}
 

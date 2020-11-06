@@ -1,9 +1,12 @@
-<h1>My Bookstore</h1>
+<h1 class="title">My Bookstore</h1>
 
-<nav>
-    <ul class="pagination">
-        {{#each alphaNum}}
-        <li class="page-item"><a href="/{{this}}" class="page-link">{{this}}</a></li>
-        {{/each}}
-    </ul>
-</nav>
+<div class ="d-flex">
+    <nav>
+        <ul class="pagination">
+            {{#each alphaNum}}
+            <li class="page-item"><a href="/{{this}}" class="page-link">{{this}}</a></li>
+            {{/each}}
+        </ul>
+    </nav>
+    <div></div>
+</div>
