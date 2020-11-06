@@ -1,4 +1,10 @@
-<h1>Letter {{letter}}</h1>
+<div class="d-flex justify-content-between">
+    <h1> Character {{letter}}</h1>
+    <form action="#" method="get">
+        <button class="btn btn-outline-success" formaction="/">Home</button>
+    </form>
+</div>
+
 {{#if hasRecords}}
 <table class="table">
     {{#each records}}
@@ -29,6 +35,6 @@
 
 
 {{else}}
-<h3>No books starting with {{Letter}} found</h3>
+<h3>No books starting with {{letter}} found</h3>
 
 {{/if}}
