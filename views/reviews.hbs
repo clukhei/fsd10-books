@@ -1,4 +1,9 @@
-<h1>Book reviews for: {{title}}</h1>
+<div class="d-flex justify-content-between">
+    <h1>Book reviews for: {{title}}</h1>
+    <form action="#" method="get">
+        <button class="btn home-btn" formaction="/">Home</button>
+    </form>
+</div>
 
 {{#if hasReviews}}
 <table class="table">
@@ -33,6 +38,7 @@
         {{/each}}
     </tbody>
 </table>
+<code class="font-italic">Copyright (c) 2020 The New York Times Company. All Rights Reserved.</code>
 
 {{else}}
 <code>No reviews found for book : {{title}}</code>

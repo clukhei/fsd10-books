@@ -62,9 +62,7 @@ app.get("/:alphaNum/:bookId", async (req, res) => {
 	try {
 		const [[getBook], _] = await conn.query(SQL_GET_ONE_BOOK, [`${id}`]);
         const genres = getBook.genres.split("|").join();
-        console.log(genres)
 		const authors = getBook.authors.split("|").join();
-		console.log(getBook);
 		res.status(200);
 		res.format({
             'text/html': () => {
@@ -107,8 +105,6 @@ app.get("/:alphaNum", async (req, res) => {
 		]);
 		const count = countResult[0][0].count;
 		const totalPages = Math.ceil(count / limit);
-		console.log(count);
-		console.log(totalPages);
 		const result = await conn.query(SQL_GET_BOOK_LIST, [
 			`${letter}%`,
 			limit,
