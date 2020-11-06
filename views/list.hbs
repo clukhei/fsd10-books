@@ -15,7 +15,7 @@
 </table>
 <div class="d-flex justify-content-between">
     {{#if prevInactive}}
-    <form action=""><input type="hidden" name="dummy"></form>
+    <button class="btn btn-primary" type="submit" disabled >Previous</button>
     {{else}}
     <form action="/{{letter}}" method="GET">
         <input type="hidden" name="offset" value="{{prevOffset}}">
@@ -23,6 +23,7 @@
     </form>
     {{/if}}
     {{#if nextInactive}}
+    <button class="btn btn-primary" type="submit" disabled >Next</button>
     {{else}}
     <form action="/{{letter}}" method="GET">
         <input type="hidden" name="offset" value="{{nextOffset}}">
