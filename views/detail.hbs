@@ -2,7 +2,7 @@
     <div class="d-flex flex-column">
         <img src="{{getBook.image_url}}" alt="book-img" height="100%" width="100%">
         <code>Pages: {{getBook.pages}} </code>
-        <code>Rating: {{getBook.rating}} </code>
+        <code>Rating: {{getBook.rating}} ({{getBook.rating_count}})</code>
         <code>Genres: {{#each genres}}{{this}}, {{/each}} </code>
     </div>
 
@@ -10,6 +10,6 @@
         <h1>{{getBook.title}}</h1>
         <h4>by {{#each authors}}{{this}}, {{/each}}</h4>
         <p>{{getBook.description}}</p>
-        <a href="#">Find Review</a>
+        <a href="/reviews/{{getBook.title}}">Find Review</a>
     </div>
 </div>

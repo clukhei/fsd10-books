@@ -1,0 +1,39 @@
+<h1>Book reviews for: {{title}}</h1>
+
+{{#if hasReviews}}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Book Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Reviewer</th>
+            <th scope="col">Review Date</th>
+            <th scope="col">Summary of review</th>
+            <th scope="col">View</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each reviews}}
+        <tr>
+
+            <td>{{this.book_title}}</td>
+            <td>{{this.book_author}}</td>
+            <td>{{this.byline}}</td>
+            <td>{{this.publication_dt}}</td>
+            <td>{{this.summary}}</td>
+            <td>
+                <form action="#">
+                    <button class="btn btn-warning" formaction="{{this.url}}">
+                        See review
+                    </button>
+                </form>
+            </td>
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{else}}
+<code>No reviews found for book : {{title}}</code>
+{{/if}}
