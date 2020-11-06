@@ -5,6 +5,9 @@ const mysql = require("mysql2/promise");
 const fetch = require("node-fetch");
 const withQuery = require("with-query").default;
 const PORT = parseInt(process.argv[2]) || parseInt(process.env.PORT) || 3000;
+const morgan = require('morgan')
+
+
 dotenv.config();
 
 const baseUrl = "https://api.nytimes.com/svc/books/v3/reviews.json";
@@ -23,6 +26,7 @@ const pool = mysql.createPool({
 app.use(express.static(__dirname + "/static"));
 app.engine("hbs", hbs({ defaultLayout: "default.hbs" }));
 app.set("view engine", "hbs");
+app.use(morgan('combined'))
 
 //SQL
 const SQL_GET_BOOK_LIST =
@@ -116,7 +120,6 @@ app.get("/:alphaNum", async (req, res) => {
 
 app.get("/", (req, res) => {
 	const alphaNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
-	console.log(alphaNum);
 	res.status(200);
 	res.type("text/html");
 	res.render("index", { alphaNum });
