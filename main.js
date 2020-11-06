@@ -22,7 +22,27 @@ app.set("view engine", "hbs")
 //SQL
 const SQL_GET_BOOK_LIST = 'SELECT * FROM goodreads.book2018 WHERE title LIKE ? order by title asc limit ? offset ? '
 const SQL_COUNT_GET_BOOK_LIST = 'SELECT count(*) as count FROM goodreads.book2018 WHERE title LIKE ?'
+const SQL_GET_ONE_BOOK = 'SELECT * FROM goodreads.book2018 WHERE book_id = ?'
 
+app.get('/:alphaNum/:bookId', async(req,res)=> {
+    const id = req.params.bookId
+    const conn = await pool.getConnection()
+    try{
+        const [[getBook], _] = await conn.query(SQL_GET_ONE_BOOK, [`${id}`])
+        const genres = getBook.genres.split('|')
+        const authors = getBook.authors.split('|')
+        console.log(getBook)
+        res.status(200)
+        res.type('text/html')
+        res.render('detail', {getBook, genres, authors})
+    } catch(e){
+        res.status(500)
+        res.type('text/html')
+        res.send(JSON.stringify(e))
+    } finally{
+        conn.release()
+    }
+})
 app.get("/:alphaNum", async(req,res)=> {
     const letter = req.params.alphaNum
     const offset = parseInt(req.query['offset']) || 0
@@ -32,7 +52,6 @@ app.get("/:alphaNum", async(req,res)=> {
         const countResult = await conn.query(SQL_COUNT_GET_BOOK_LIST, [`${letter}%`])
         const count = countResult[0][0].count
         const totalPages = Math.ceil(count / limit)
-  
         console.log(count)
         console.log(totalPages)
         const result = await conn.query(SQL_GET_BOOK_LIST,[`${letter}%`,limit, offset])

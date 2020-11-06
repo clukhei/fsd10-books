@@ -3,3 +3,7 @@ body{
     width: 80%;
     padding-top: 100px;
 }
+
+.description{
+    max-width: 60%;
+}
