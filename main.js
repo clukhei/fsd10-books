@@ -15,6 +15,17 @@ const pool = mysql.createPool({
     timezone: '+08:00'
 })
 
+app.use(express.static(__dirname + "/static"))
+app.engine("hbs", hbs({defaultLayout: "default.hbs"}))
+app.set("view engine", "hbs")
+
+app.get("/", (req,res)=> {
+    const alphaNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split('')
+    console.log(alphaNum)
+    res.status(200)
+    res.type('text/html')
+    res.render('index', {alphaNum})
+})
 const startApp = async(app, pool) => {
     try{
         const conn = await pool.getConnection()
