@@ -3,19 +3,19 @@
         <img src="{{getBook.image_url}}" alt="book-img" height="100%" width="100%">
         <code>Pages: {{getBook.pages}} </code>
         <code>Rating: {{getBook.rating}} ({{getBook.rating_count}})</code>
-        <code>Genres: {{#each genres}}{{this}}, {{/each}} </code>
-       
+        <code>Genres: {{genres}} </code>
+
     </div>
 
     <div class="mt-5 ml-5 description">
         <h1>{{getBook.title}}</h1>
-         <code class="font-italic">Copyright (c) 2020 The New York Times Company. ALl Rights Reserved.</code>
-        <h4>by {{#each authors}}{{this}}, {{/each}}</h4>
+        <code class="font-italic">Copyright (c) 2020 The New York Times Company. ALl Rights Reserved.</code>
+        <h4>by {{authors}}</h4>
         <p>{{getBook.description}}</p>
         <form action="#" method="get">
-        <button class="btn nextprev-btn" formaction="/reviews/{{getBook.title}}">Find Review</button>
-    </form>    
-        
+            <button class="btn nextprev-btn" formaction="/reviews/{{getBook.title}}">Find Review</button>
+        </form>
+
     </div>
     <form action="#" method="get">
         <button class="btn home-btn" formaction="/">Home</button>

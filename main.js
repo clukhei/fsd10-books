@@ -45,9 +45,6 @@ app.get("/reviews/:title", (req, res) => {
 	fetch(queryUrl)
 		.then((results) => results.json())
 		.then((data) => {
-			console.log(data.results);
-
-			
 				res.status(200);
 				res.type("text/html");
 				res.render("reviews", {
@@ -64,8 +61,9 @@ app.get("/:alphaNum/:bookId", async (req, res) => {
 	const conn = await pool.getConnection();
 	try {
 		const [[getBook], _] = await conn.query(SQL_GET_ONE_BOOK, [`${id}`]);
-		const genres = getBook.genres.split("|");
-		const authors = getBook.authors.split("|");
+        const genres = getBook.genres.split("|").join();
+        console.log(genres)
+		const authors = getBook.authors.split("|").join();
 		console.log(getBook);
 		res.status(200);
 		res.format({
@@ -117,7 +115,6 @@ app.get("/:alphaNum", async (req, res) => {
 			offset,
 		]);
 		const records = result[0];
-		//console.log(records)
 		res.status(200);
 		res.type("text/html");
 		res.render("list", {
